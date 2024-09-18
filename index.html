@@ -15,6 +15,7 @@
 
   <body>
     <label><input id="spaces" type="checkbox" checked />Tabs to Spaces</label>
+    <label><input id="whitespace" type="checkbox" checked />Vary Spaces</label>
     <h2>Code</h2>
     <textarea id="src"></textarea>
     <h2>Corrupted</h2>
@@ -40,10 +41,11 @@
         // U+00A0 NO-BREAK SPACE
         // U+2002 EN SPACE
         // U+2003 EM SPACE
-        corrupted.value = corrupted.value.replaceAll(
-          '    ',
-          '\u00A0 \u2002\u2003',
-        )
+        if (whitespace)
+          corrupted.value = corrupted.value.replaceAll(
+            '    ',
+            '\u00A0 \u2002\u2003',
+          )
 
         // Add an invisible Hangul Choseong Filler at the end of strings
         corrupted.value = corrupted.value.replaceAll('"', '"ᅟ')
