@@ -26,6 +26,7 @@
     <label><input id="spaces" type="checkbox" checked />Tabs to Spaces</label>
     <label><input id="whitespace" type="checkbox" checked />Vary Spaces</label>
     <label><input id="strings" type="checkbox" />Corrupt Strings</label>
+    <label><input id="bold" type="checkbox" />Bold keywords</label>
 
     <section class="wholerow">
       <label for="src">Input</label>
@@ -69,6 +70,14 @@
         // Add an invisible Hangul Choseong Filler at the end of strings
         if (strings.checked)
           corrupted.value = corrupted.value.replaceAll('"', '"ᅟ')
+
+        // Bold certain keywords using unicode math characters
+        if (bold.checked) {
+          corrupted.value = corrupted.value.replaceAll('def', '𝐝𝐞𝐟')
+          corrupted.value = corrupted.value.replaceAll('if', '𝐢𝐟')
+          corrupted.value = corrupted.value.replaceAll('elif', '𝐞𝐥𝐢𝐟')
+          corrupted.value = corrupted.value.replaceAll('else', '𝐞𝐥𝐬𝐞')
+        }
       })
       src.dispatchEvent(new Event('input'))
     </script>
