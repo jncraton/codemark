@@ -48,6 +48,7 @@
         // Add an invisible Hangul Choseong Filler at the end of strings
         corrupted.value = corrupted.value.replaceAll('"', '"ᅟ')
       })
+      src.dispatchEvent(new Event('input'))
     </script>
   </body>
 </html>
