@@ -44,7 +44,7 @@
     </section>
 
     <script>
-      src.addEventListener('input', () => {
+      function render() {
         repaired.value = src.value
         repaired.value = repaired.value.replaceAll('\u00A0', '')
         repaired.value = repaired.value.replaceAll('\u2002', '')
@@ -78,8 +78,13 @@
           corrupted.value = corrupted.value.replaceAll('elif', '𝐞𝐥𝐢𝐟')
           corrupted.value = corrupted.value.replaceAll('else', '𝐞𝐥𝐬𝐞')
         }
-      })
-      src.dispatchEvent(new Event('input'))
+      }
+
+      src.addEventListener('input', render)
+      document
+        .querySelectorAll('input')
+        .forEach(e => e.addEventListener('input', render))
+      render()
     </script>
   </body>
 </html>
