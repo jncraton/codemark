@@ -14,6 +14,7 @@
   </head>
 
   <body>
+    <label><input id="spaces" type="checkbox" checked />Tabs to Spaces</label>
     <h2>Code</h2>
     <textarea id="src"></textarea>
     <h2>Corrupted</h2>
@@ -32,7 +33,8 @@
         corrupted.value = src.value
 
         // Replace tabs with spaces
-        corrupted.value = corrupted.value.replaceAll('\t', '    ')
+        if (spaces.checked)
+          corrupted.value = corrupted.value.replaceAll('\t', '    ')
 
         // Replace 4-space indents with alternate whitespace:
         // U+00A0 NO-BREAK SPACE
