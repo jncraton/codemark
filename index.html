@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -6,44 +6,46 @@
 
     <title></title>
     <style>
-    textarea {
-      width: 80em;
-      height: 30em;
-    }
+      textarea {
+        width: 80em;
+        height: 30em;
+      }
     </style>
   </head>
 
   <body>
     <h1>Original</h1>
-    <textarea id=src></textarea>
+    <textarea id="src"></textarea>
     <h2>Corrupted</h2>
-    <textarea id=corrupted></textarea>
+    <textarea id="corrupted"></textarea>
     <h2>Repaired</h2>
-    <textarea id=repaired></textarea>
+    <textarea id="repaired"></textarea>
 
     <script>
-    src.addEventListener('input', () => {
-      repaired.value = src.value
-      repaired.value = repaired.value.replaceAll("\u00A0", "")
-      repaired.value = repaired.value.replaceAll("\u2002", "")
-      repaired.value = repaired.value.replaceAll("\u2003", "")
-      repaired.value = repaired.value.replaceAll("ᅟ", "")
+      src.addEventListener('input', () => {
+        repaired.value = src.value
+        repaired.value = repaired.value.replaceAll('\u00A0', '')
+        repaired.value = repaired.value.replaceAll('\u2002', '')
+        repaired.value = repaired.value.replaceAll('\u2003', '')
+        repaired.value = repaired.value.replaceAll('ᅟ', '')
 
-      corrupted.value = src.value
+        corrupted.value = src.value
 
-      // Replace tabs with spaces
-      corrupted.value = corrupted.value.replaceAll("\t", "    ")
-      
-      // Replace 4-space indents with alternate whitespace:
-      // U+00A0 NO-BREAK SPACE
-      // U+2002 EN SPACE
-      // U+2003 EM SPACE
-      corrupted.value = corrupted.value.replaceAll("    ", "\u00A0 \u2002\u2003")
+        // Replace tabs with spaces
+        corrupted.value = corrupted.value.replaceAll('\t', '    ')
 
-      // Add an invisible Hangul Choseong Filler at the end of strings
-      corrupted.value = corrupted.value.replaceAll('"', '"ᅟ')
-      
-    })
+        // Replace 4-space indents with alternate whitespace:
+        // U+00A0 NO-BREAK SPACE
+        // U+2002 EN SPACE
+        // U+2003 EM SPACE
+        corrupted.value = corrupted.value.replaceAll(
+          '    ',
+          '\u00A0 \u2002\u2003',
+        )
+
+        // Add an invisible Hangul Choseong Filler at the end of strings
+        corrupted.value = corrupted.value.replaceAll('"', '"ᅟ')
+      })
     </script>
   </body>
 </html>
