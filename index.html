@@ -10,6 +10,15 @@
         width: 80ch;
         height: 20em;
       }
+      section {
+        display: inline-block;
+      }
+      section.wholerow {
+        display: block;
+      }
+      section > label {
+        display: block;
+      }
     </style>
   </head>
 
@@ -17,12 +26,21 @@
     <label><input id="spaces" type="checkbox" checked />Tabs to Spaces</label>
     <label><input id="whitespace" type="checkbox" checked />Vary Spaces</label>
     <label><input id="strings" type="checkbox" />Corrupt Strings</label>
-    <h2>Input</h2>
-    <textarea id="src"></textarea>
-    <h2>Corrupted</h2>
-    <textarea id="corrupted"></textarea>
-    <h2>Repaired</h2>
-    <textarea id="repaired"></textarea>
+
+    <section class="wholerow">
+      <label for="src">Input</label>
+      <textarea id="src"></textarea>
+    </section>
+
+    <section style="display: inline-block">
+      <label for="corrupted">Corrupted</label>
+      <textarea id="corrupted"></textarea>
+    </section>
+
+    <section style="display: inline-block">
+      <label for="repaired">Repaired</label>
+      <textarea id="repaired"></textarea>
+    </section>
 
     <script>
       src.addEventListener('input', () => {
