@@ -112,7 +112,10 @@
             bolded = Array.from(kw)
               .map(l => bold_letters[letters.indexOf(l)])
               .join('')
-            corrupted.value = corrupted.value.replaceAll(new RegExp(`(^|\\W)(${kw})(\\W|$)`, 'g'), `$1${bolded}$3`)
+            corrupted.value = corrupted.value.replaceAll(
+              new RegExp(`(^|\\W)(${kw})(\\W|$)`, 'g'),
+              `$1${bolded}$3`,
+            )
           })
         }
       }
