@@ -44,12 +44,19 @@
     </section>
 
     <script>
+      const letters = 'abcdefghijklmnopqrstuvwxyz'
+      const bold_letters = '𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳'
+
       function render() {
         repaired.value = src.value
         repaired.value = repaired.value.replaceAll('\u00A0', '')
         repaired.value = repaired.value.replaceAll('\u2002', '')
         repaired.value = repaired.value.replaceAll('\u2003', '')
         repaired.value = repaired.value.replaceAll('ᅟ', '')
+
+        Array.from(bold_letters).forEach((l, i) => {
+          repaired.value = repaired.value.replaceAll(l, letters[i])
+        })
 
         corrupted.value = src.value
 
