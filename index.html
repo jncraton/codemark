@@ -44,8 +44,36 @@
     </section>
 
     <script>
+      const keywords = ['def', 'if', 'elif', 'else']
       const letters = 'abcdefghijklmnopqrstuvwxyz'
-      const bold_letters = '𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳'
+      const bold_letters = [
+        '𝐚',
+        '𝐛',
+        '𝐜',
+        '𝐝',
+        '𝐞',
+        '𝐟',
+        '𝐠',
+        '𝐡',
+        '𝐢',
+        '𝐣',
+        '𝐤',
+        '𝐥',
+        '𝐦',
+        '𝐧',
+        '𝐨',
+        '𝐩',
+        '𝐪',
+        '𝐫',
+        '𝐬',
+        '𝐭',
+        '𝐮',
+        '𝐯',
+        '𝐰',
+        '𝐱',
+        '𝐲',
+        '𝐳',
+      ]
 
       function render() {
         repaired.value = src.value
@@ -54,7 +82,7 @@
         repaired.value = repaired.value.replaceAll('\u2003', '')
         repaired.value = repaired.value.replaceAll('ᅟ', '')
 
-        Array.from(bold_letters).forEach((l, i) => {
+        bold_letters.forEach((l, i) => {
           repaired.value = repaired.value.replaceAll(l, letters[i])
         })
 
@@ -80,10 +108,12 @@
 
         // Bold certain keywords using unicode math characters
         if (bold.checked) {
-          corrupted.value = corrupted.value.replaceAll('def', '𝐝𝐞𝐟')
-          corrupted.value = corrupted.value.replaceAll('if', '𝐢𝐟')
-          corrupted.value = corrupted.value.replaceAll('elif', '𝐞𝐥𝐢𝐟')
-          corrupted.value = corrupted.value.replaceAll('else', '𝐞𝐥𝐬𝐞')
+          keywords.forEach(kw => {
+            bolded = Array.from(kw)
+              .map(l => bold_letters[letters.indexOf(l)])
+              .join('')
+            corrupted.value = corrupted.value.replaceAll(kw, bolded)
+          })
         }
       }
 
