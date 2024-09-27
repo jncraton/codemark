@@ -27,6 +27,7 @@
     <label><input id="whitespace" type="checkbox" checked />Vary Spaces</label>
     <label><input id="strings" type="checkbox" />Corrupt Strings</label>
     <label><input id="bold" type="checkbox" />Bold keywords</label>
+    <label><input id="linenums" type="checkbox" />Line Numbers</label>
 
     <section class="wholerow">
       <label for="src">Input</label>
@@ -131,6 +132,13 @@
               `$1${bolded}$3`,
             )
           })
+        }
+
+        if (linenums.checked) {
+          corrupted.value = corrupted.value
+            .split('\n')
+            .map((l, i) => `${String(i + 1).padStart(3)} | ${l}`)
+            .join('\n')
         }
       }
 
