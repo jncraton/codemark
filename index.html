@@ -96,10 +96,10 @@
 
       function render() {
         repaired.value = src.value
-        repaired.value = repaired.value.replaceAll('\u00A0', '')
-        repaired.value = repaired.value.replaceAll('\u2002', '')
-        repaired.value = repaired.value.replaceAll('\u2003', '')
-        repaired.value = repaired.value.replaceAll('ᅟ', '')
+        repaired.value = repaired.value.replaceAll('\u00A0', ' ')
+        repaired.value = repaired.value.replaceAll('\u2002', ' ')
+        repaired.value = repaired.value.replaceAll('\u2003', ' ')
+        repaired.value = repaired.value.replaceAll('ᅟ', ' ')
 
         bold_letters.forEach((l, i) => {
           repaired.value = repaired.value.replaceAll(l, letters[i])
