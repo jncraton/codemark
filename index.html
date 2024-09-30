@@ -35,8 +35,8 @@
     </section>
 
     <section style="display: inline-block">
-      <label for="corrupted">Corrupted</label>
-      <textarea id="corrupted"></textarea>
+      <label for="watermarked">Watermarked</label>
+      <textarea id="watermarked"></textarea>
     </section>
 
     <section style="display: inline-block">
@@ -107,25 +107,25 @@
 
         repaired.value = repaired.value.replaceAll(/^ *[\d]+ \| /gm, '')
 
-        corrupted.value = repaired.value
+        watermarked.value = repaired.value
 
         // Replace tabs with spaces
         if (spaces.checked)
-          corrupted.value = corrupted.value.replaceAll('\t', '    ')
+          watermarked.value = watermarked.value.replaceAll('\t', '    ')
 
         // Replace 4-space indents with alternate whitespace:
         // U+00A0 NO-BREAK SPACE
         // U+2002 EN SPACE
         // U+2003 EM SPACE
         if (whitespace.checked)
-          corrupted.value = corrupted.value.replaceAll(
+          watermarked.value = watermarked.value.replaceAll(
             '    ',
             '\u00A0 \u2002\u2003',
           )
 
         // Add an invisible Hangul Choseong Filler at the end of strings
         if (strings.checked)
-          corrupted.value = corrupted.value.replaceAll('"', '"ᅟ')
+          watermarked.value = watermarked.value.replaceAll('"', '"ᅟ')
 
         // Bold certain keywords using unicode math characters
         if (bold.checked) {
@@ -133,7 +133,7 @@
             bolded = Array.from(kw)
               .map(l => bold_letters[letters.indexOf(l)])
               .join('')
-            corrupted.value = corrupted.value.replaceAll(
+            watermarked.value = watermarked.value.replaceAll(
               new RegExp(`(^|\\W)(${kw})(\\W|$)`, 'g'),
               `$1${bolded}$3`,
             )
@@ -141,7 +141,7 @@
         }
 
         if (linenums.checked) {
-          corrupted.value = corrupted.value
+          watermarked.value = watermarked.value
             .split('\n')
             .map((l, i) => `${String(i + 1).padStart(3)} | ${l}`)
             .join('\n')
