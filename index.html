@@ -105,7 +105,9 @@
           repaired.value = repaired.value.replaceAll(l, letters[i])
         })
 
-        corrupted.value = src.value
+        repaired.value = repaired.value.replaceAll(/^ *[\d]+ \| /gm, '')
+
+        corrupted.value = repaired.value
 
         // Replace tabs with spaces
         if (spaces.checked)
