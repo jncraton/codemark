@@ -28,6 +28,7 @@
     <label><input id="bold" type="checkbox" checked />Bold keywords</label>
     <label><input id="strings" type="checkbox" />Corrupt Strings</label>
     <label><input id="linenums" type="checkbox" />Line Numbers</label>
+    <label><input id="htmloutput" type="checkbox" />HTML Output</label>
 
     <section class="wholerow">
       <label for="src">Input</label>
@@ -189,6 +190,13 @@
             .split('\n')
             .map((l, i) => `${String(i + 1).padStart(3)} | ${l}`)
             .join('\n')
+        }
+
+        if (htmloutput.checked) {
+          let encodingArea = document.createElement('textarea')
+          encodingArea.innerText = watermarked.value
+          html = `<pre>${encodingArea.innerHTML}</pre>`
+          watermarked.value = html
         }
       }
 
