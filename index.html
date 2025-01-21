@@ -28,6 +28,10 @@
     <label><input id="bold" type="checkbox" checked />Bold keywords</label>
     <label><input id="strings" type="checkbox" />Corrupt Strings</label>
     <label><input id="linenums" type="checkbox" />Line Numbers</label>
+    <label
+      ><input id="canvasvars" type="checkbox" />Mangle Canvas variables (HTML
+      only)</label
+    >
     <label><input id="htmloutput" type="checkbox" />HTML Output</label>
 
     <section class="wholerow">
@@ -196,6 +200,15 @@
           let encodingArea = document.createElement('textarea')
           encodingArea.innerText = watermarked.value
           html = `<pre>${encodingArea.innerHTML}</pre>`
+
+          if (canvasvars.checked) {
+            html = html.replace(/\[[A-Za-z]\]/g, v => {
+              let n = 2 + Math.floor(Math.random() * 7)
+
+              return `<span style="font-size:0px">${n}</span>${v}`
+            })
+          }
+
           watermarked.value = html
         }
       }
