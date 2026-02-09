@@ -6,15 +6,23 @@
 
     <title></title>
     <style>
+      body {
+        max-width: 960px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
       textarea {
-        width: 80ch;
+        width: 100%;
         height: 20em;
+        box-sizing: border-box;
       }
-      section {
-        display: inline-block;
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
       }
-      section.wholerow {
-        display: block;
+      .wholerow {
+        grid-column: 1 / span 2;
       }
       section > label {
         display: block;
@@ -34,20 +42,22 @@
     >
     <label><input id="htmloutput" type="checkbox" />HTML Output</label>
 
-    <section class="wholerow">
-      <label for="src">Input</label>
-      <textarea id="src"></textarea>
-    </section>
+    <div class="grid">
+      <section class="wholerow">
+        <label for="src">Input</label>
+        <textarea id="src"></textarea>
+      </section>
 
-    <section style="display: inline-block">
-      <label for="watermarked">Watermarked</label>
-      <textarea id="watermarked" readonly></textarea>
-    </section>
+      <section>
+        <label for="watermarked">Watermarked</label>
+        <textarea id="watermarked" readonly></textarea>
+      </section>
 
-    <section style="display: inline-block">
-      <label for="repaired">Repaired</label>
-      <textarea id="repaired" readonly></textarea>
-    </section>
+      <section>
+        <label for="repaired">Repaired</label>
+        <textarea id="repaired" readonly></textarea>
+      </section>
+    </div>
 
     <script>
       const keywords = [
